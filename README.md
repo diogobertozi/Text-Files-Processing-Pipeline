@@ -22,6 +22,22 @@ foreach ($entry in $datasets.GetEnumerator()) {
 
 Este projeto demonstra um pipeline simples para leitura, transformação e persistência de arquivos de texto (TXT, CSV e JSON) em Python. Embora o domínio seja pequeno, ele foi planejado para mostrar, de forma explícita, como quatro padrões clássicos da GoF respondem melhor ao problema do que as demais opções do catálogo.
 
+## Por que Estes 4 Padrões?
+
+Dentre os 23 padrões GoF, selecionamos estes quatro porque endereçam diretamente as necessidades arquiteturais do pipeline:
+
+**Padrões escolhidos cobrem as três categorias:**
+- **Criacional (Factory Method):** instanciação de leitores baseada em extensões de arquivo
+- **Estrutural (Decorator):** adição dinâmica de comportamentos (cache, compressão, criptografia)
+- **Comportamental (Chain of Responsibility + Template Method):** organização do fluxo de transformações e do algoritmo geral
+
+**Por que os outros 19 padrões não se aplicam:**
+- **Criacionais não escolhidos:** Abstract Factory seria complexo demais para um único tipo de produto; Singleton não temos recursos globais; Builder/Prototype não há construção complexa de objetos
+- **Estruturais não escolhidos:** Adapter/Bridge/Facade não há sistemas legados para adaptar; Composite não há estruturas hierárquicas; Flyweight não há compartilhamento massivo de objetos; Proxy não há controle de acesso remoto
+- **Comportamentais não escolhidos:** Command/Memento/Observer/State/Strategy/Visitor não há necessidade de desfazer operações, observar eventos, gerenciar estados ou variar algoritmos dinamicamente; Interpreter/Iterator/Mediator não há gramáticas, coleções customizadas ou comunicação complexa entre objetos
+
+Os quatro padrões escolhidos resolvem problemas reais do projeto (criação polimórfica, composição de funcionalidades, pipeline de transformações, algoritmo reutilizável) sem adicionar complexidade desnecessária.
+
 ## Justificativa para Cada Padrão
 
 Justificativa detalhada para cada padrão utilizado, explicando:
